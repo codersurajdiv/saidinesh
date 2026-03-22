@@ -28,6 +28,8 @@ const TEACHING = [
 const EMAIL = "saidinesh75@gmail.com";
 const OFFICE = "IIT Madras, Chennai, Tamil Nadu 600036, India";
 const GOOGLE_SCHOLAR = "https://scholar.google.com/citations?user=zdjwKeMAAAAJ&hl=en";
+const LINKEDIN = "https://www.linkedin.com/in/saidineshkan/";
+const GITHUB = "https://github.com/saidinesh75";
 
 export default function TeachingContactSection() {
   const sortedCourses = [...TEACHING].sort((a, b) => b.year - a.year);
@@ -150,6 +152,24 @@ export default function TeachingContactSection() {
                     data-ocid="contact.scholar.link"
                   >
                     Google Scholar
+                  </a>
+                  <a
+                    href={LINKEDIN}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-teal border border-teal/30 px-3 py-1.5 rounded hover:bg-teal/5 transition-colors"
+                    data-ocid="contact.linkedin.link"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href={GITHUB}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-teal border border-teal/30 px-3 py-1.5 rounded hover:bg-teal/5 transition-colors"
+                    data-ocid="contact.github.link"
+                  >
+                    GitHub
                   </a>
                 </div>
               </div>

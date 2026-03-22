@@ -42,7 +42,7 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <p className="text-foreground/80 leading-relaxed mb-8 text-[15px] max-w-md">
+            <p className="text-foreground/80 leading-relaxed mb-8 text-[15px] max-w-md text-justify">
               {PROFILE.bio}
             </p>
 
