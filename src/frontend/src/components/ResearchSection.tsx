@@ -1,9 +1,7 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { BarChart2, Brain, Radio } from "lucide-react";
 import { motion } from "motion/react";
-import { useResearchInterests } from "../hooks/useQueries";
 
-const FALLBACK_INTERESTS = [
+const INTERESTS = [
   {
     title: "Compressed Sensing & High-Dimensional Statistics",
     description:
@@ -24,15 +22,7 @@ const FALLBACK_INTERESTS = [
   },
 ];
 
-const icons = [BarChart2, Radio, Brain];
-
 export default function ResearchSection() {
-  const { data: interests, isLoading } = useResearchInterests();
-
-  const items = (
-    interests && interests.length > 0 ? interests : FALLBACK_INTERESTS
-  ).map((item, i) => ({ ...item, icon: icons[i % icons.length] }));
-
   return (
     <section id="research" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -49,40 +39,32 @@ export default function ResearchSection() {
           <div className="w-12 h-0.5 bg-teal mx-auto" />
         </motion.div>
 
-        {isLoading ? (
-          <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-56 w-full rounded-lg" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-3 gap-6" data-ocid="research.list">
-            {items.map((interest, idx) => {
-              const Icon = interest.icon;
-              return (
-                <motion.div
-                  key={interest.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="bg-white border border-border rounded-lg p-6 shadow-card hover:shadow-md transition-shadow"
-                  data-ocid={`research.item.${idx + 1}`}
-                >
-                  <div className="w-10 h-10 rounded-md bg-teal/10 flex items-center justify-center mb-4">
-                    <Icon size={20} className="text-teal" />
-                  </div>
-                  <h3 className="font-semibold text-foreground text-base mb-2">
-                    {interest.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {interest.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        )}
+        <div className="grid md:grid-cols-3 gap-6" data-ocid="research.list">
+          {INTERESTS.map((interest, idx) => {
+            const Icon = interest.icon;
+            return (
+              <motion.div
+                key={interest.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="bg-white border border-border rounded-lg p-6 shadow-card hover:shadow-md transition-shadow"
+                data-ocid={`research.item.${idx + 1}`}
+              >
+                <div className="w-10 h-10 rounded-md bg-teal/10 flex items-center justify-center mb-4">
+                  <Icon size={20} className="text-teal" />
+                </div>
+                <h3 className="font-semibold text-foreground text-base mb-2">
+                  {interest.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {interest.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
